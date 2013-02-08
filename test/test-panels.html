@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Test Panels</title>
+        <script src="../enyo/enyo.js" type="text/javascript"></script>
+        <!--  -->
+        <script src="package-panels.js"></script>
+        <script src="test-panels.js" type="text/javascript"></script>
+		<style type="text/css">
+            .app > * {
+                width: 320px;
+                box-shadow: -4px -4px 4px rgba(0,0,0,0.3);
+                border-left: 1px solid rgba(0,0,0,0.3);
+            }
+            .panels {
+                min-height: 320px;
+                min-width: 320px;
+            }
+            .panels > * {
+                width: 320px;
+                background-color: #EAEAEA;
+                box-shadow: -4px -4px 4px rgba(0,0,0,0.3);
+            }
+            .item {
+                position: relative;
+                border-bottom: 1px solid #ddd;
+                padding: 16px 12px;
+            }
+            .item-tittle {
+                position: relative;
+                border-bottom: 1px solid #ddd;
+                padding: 16px 12px;
+                font-weight: bold;
+            }
+            .project-name {
+                position: relative;
+                border-bottom: 1px solid #aaaaaa;
+                padding: 16px 12px;
+                font-weight:bold;
+                background: #E3E4E6 url(../assets/gradient-2.png) repeat-x bottom;
+            }
+		</style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            new App().write();
+        </script>
+    </body>
+</html>

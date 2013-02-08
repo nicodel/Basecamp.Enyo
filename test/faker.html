@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <title>test XML</title>
+        <script src="../lib/faker/Faker.js" type="text/javascript"></script>
+        <!--  -->
+        <script src="generate_fakes.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            projectsArray = getProjects();
+            console.log("Projects :", projectsArray);
+            
+            peoplesArray = getPeoples();
+            console.log("Peoples :", peoplesArray);
+            
+            discussionsArray = getDiscussions();
+            console.log("Discussions :", discussionsArray);
+            
+            todolistsArray = getTodolists();
+            console.log("Todo Lists :", todolistsArray);
+            
+            filesArray = getFiles();
+            console.log("Files :", filesArray);
+            
+            documentsArray = getDocuments();
+            console.log("Documents :", documentsArray);
+        </script>
+    </body>
+</html>

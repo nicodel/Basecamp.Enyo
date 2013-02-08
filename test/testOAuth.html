@@ -1,0 +1,90 @@
+<!--
+https://launchpad.37signals.com/authorization/new?type=web_server&client_id=your-client-id&redirect_uri=your-redirect-uri
+POST https://launchpad.37signals.com/authorization/token?type=web_server&client_id=your-client-id&redirect_uri=your-redirect-uri&client_secret=your-client-secret&code=verification-code
+--- 
+:error: "Unsupported type: nil. We support user_agent and web_server."
+
+Windows: Registering the Application Handling the Custom Protocol
+HKEY_CLASSES_ROOT
+    basecampEnyo
+        (Default) = "URL:Alert Protocol"
+        URL Protocol = ""
+        shell
+            open
+                command
+                    (Default) = "C:\DEV\enyo.workspace\Basecamp.Enyo\debug.html" "%1"
+
+
+-->
+<!doctype html>
+<html>
+	<head>
+		<title>Test OAuth 2 Librairy</title>
+        <!-- -->
+		<script src="../enyo/enyo.js" type="text/javascript"></script>
+		<script src="../lib/onyx/package.js" type="text/javascript"></script>
+		<script src="../lib/webview/package.js" type="text/javascript"></script>
+        <!-- <script src="../lib/jso/jso.js"></script> -->
+    </head>
+	<body>
+		<script type="text/javascript">
+            /*jso_configure({
+                "basecamp": {
+                    client_id: "73061ef2a2fee0686c4d1c3f985c07c46e236325",
+                    client_server: "eeb088e0266e236af98d87143e76218a2426e345",
+                    redirect_uri: "http://nicoworkspace.free.fr",
+                    authorization: "https://launchpad.37signals.com/authorization/new",
+                    presenttoken: "header",
+					scope: ["basic", "likes"],
+					isDefault: true
+                },
+                debug: true
+            });
+            jso_ensureTokens({
+                "basecamp": ["web_server"]
+            });*/
+            
+            var settings = {};
+            settings.client_id = "73061ef2a2fee0686c4d1c3f985c07c46e236325";
+            settings.client_server = "eeb088e0266e236af98d87143e76218a2426e345";
+            settings.redirect_uri = "http://localhost:8080";
+            settings.authorization = "https://launchpad.37signals.com/authorization/new";
+            settings.token = "https://launchpad.37signals.com/authorization/token";
+            
+            
+            enyo.kind({
+                name: "App",
+                published: {
+                    new_url: "https://launchpad.37signals.com/authorization/new",
+                    settings: null
+                },
+                components: [
+                    {name: "webView1",tag: "iframe", src: "", classes: "enyo-fill", style: "border: none;"}
+//                    {name: "webView1", kind: "AjaxWebView", classes: "devw enyo-fit", allowHtml: true, isContainer: true}
+                ],
+                create: function () {
+                    this.inherited(arguments);
+                    this.settings = settings;
+                    var url_new = this.settings.authorization + "?type=user_agent";
+                    url_new = url_new + "&client_id=" + this.settings.client_id;
+                    url_new = url_new + "&redirect_uri=" + this.settings.redirect_uri;
+                    console.log("url_new: ", url_new + "#");
+//                    this.$.webView1.call(url_new);
+                    this.$.webView1.setSrc(url_new);
+                    /*var request = new enyo.Ajax({
+                        url: url_new
+                    });
+                    request.response(enyo.bind(this, 'getResults'));
+                    request.go();*/
+                },
+                getResults: function (inSender, inResponse) {
+//                    console.log("inResponse: ", inResponse);
+                }
+            });
+            
+			var App = new App();
+			App.renderInto(document.body);
+            
+		</script>
+	</body>
+</html>
